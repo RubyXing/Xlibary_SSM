@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<!-- 1.导入外部的properties文件 -->
+	<context:property-placeholder location="classpath:db.properties"/>
+	
+	<!-- 2.配置数据源 spring-jdbc 提供了对应的类来实现连接数据库 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driver}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+	
+	<!-- 3.配置SQLsessionfactory 是mybatis-spring包中提供mybatis主动整合spring的类，创建factory -->
+	<bean id="factory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 指定dataSource，连接数据库时需要 -->
+		<property name="dataSource" ref="dataSource"/>
+		
+		<!-- 加载mybatis的主配置文件 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+	</bean>
+	
+	<!-- 4.mapper的配置 此类用来创建各种mapper -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 扫描mapper所在包，指定给哪些接口生成mapper对象 
+			会自动生成dao的对象
+		-->
+		<property name="basePackage" value="com.xing.dao"/>
+		
+		<!-- 与factory进行关联，factory创建sqlsession，sqlsession又创建mapper -->
+		<property name="sqlSessionFactoryBeanName" value="factory"/>
+	</bean>
+	
+	
+	<!-- =================事务的配置==================== -->
+	
+	<!-- 3.创建事务管理器：用来管理指定数据库的事务开启、commit、rollback -->
+	<bean id="transactionManager" 
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- 开启spring的注解扫描：service、component、controller...
+		@Component: 基本注解, 标识了一个受 Spring 管理的组件
+		@Repository: 标识持久层组件
+		@Service: 标识服务层(业务层)组件
+		@Controller: 标识表现层组件-->
+	<context:component-scan base-package="com.xing"/>
+
+	<!-- 开启事务的注解 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+</beans>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 第四种配置方式 -->
+    <!-- mvc的映射器、适配器的注解：相当于第三种方式的映射器+适配器标签 -->
+    <mvc:annotation-driven validator="balidator"/>
+
+    <!-- 3.配置视图解析器：将逻辑视图转换成物理视图     return "abc.jsp" 通过路径找到真实存在的html、jsp页面-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
+
+    <!-- 4.开启注解扫描，扫描controller -->
+    <context:component-scan base-package="com.xing.controller"/>
+
+    <!-- 静态资源放行：html、css、js、图片、视频 -->
+    <mvc:default-servlet-handler/>
+
+<!--    配置数据校验器-->
+    <bean id="balidator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+    </bean>
+
+</beans>
+
+
+
+
+
+
+
+
+
+
