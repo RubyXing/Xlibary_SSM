@@ -14,16 +14,17 @@
         http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
+
 	<!-- 1.导入外部的properties文件 -->
 	<context:property-placeholder location="classpath:db.properties"/>
 	
 	<!-- 2.配置数据源 spring-jdbc 提供了对应的类来实现连接数据库 -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${jdbc.driver}"></property>
-		<property name="url" value="${jdbc.url}"></property>
-		<property name="username" value="${jdbc.username}"></property>
-		<property name="password" value="${jdbc.password}"></property>
-	</bean>
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
 	
 	<!-- 3.配置SQLsessionfactory 是mybatis-spring包中提供mybatis主动整合spring的类，创建factory -->
 	<bean id="factory" class="org.mybatis.spring.SqlSessionFactoryBean">

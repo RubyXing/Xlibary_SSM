@@ -8,10 +8,14 @@ import lombok.experimental.Accessors;
 public class User {
 
   private long uid;
-  private String uaccount;
-  private String uname;
-  private String upwd;
-  private long uauthorty;
+//  账号
+private String uaccount;
+    //  用户名
+    private String uname;
+    //  密码
+    private String upwd;
+    //  权限
+    private long uauthorty;
 
 
 
