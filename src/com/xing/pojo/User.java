@@ -2,6 +2,7 @@ package com.xing.pojo;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Data
 @Accessors(chain = true)

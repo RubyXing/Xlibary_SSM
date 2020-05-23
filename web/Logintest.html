@@ -9,14 +9,18 @@
     <script>
         $(document).ready(function () {
             $("#login").click(function () {
+                $("#login").addClass("lm-tabs-tab-active");
+                $("#register").removeClass("lm-tabs-tab-active");
                 $("#regsterform").hide();
                 $("#loginform").show();
-                $("#colorbar").css("left", "65px");
+                $("#lm-tabs-ink").css("left", "65px");
             });
             $("#register").click(function () {
+                $("#register").addClass("lm-tabs-tab-active");
+                $("#login").removeClass("lm-tabs-tab-active");
                 $("#loginform").hide();
                 $("#regsterform").show();
-                $("#colorbar").css("left", "193px");
+                $("#lm-tabs-ink").css("left", "193px");
             });
         });
     </script>
@@ -45,7 +49,7 @@
                 position: relative;
                 text-align: center;
                 border-bottom: 2px solid rgb(232, 234, 236);
-                width: 500px;
+                width: 700px;
             }
 
             .lm-tabs-ink {
@@ -54,7 +58,8 @@
                 border-top: 2px solid #854ec4;
                 -webkit-transition: left .24s ease-in-out;
                 transition: left .24s ease-in-out;
-                left: 193px;
+                left: 246px;
+                /*left: 376px;*/
                 width: 80px;
             }
         }
@@ -64,6 +69,7 @@
                 position: relative;
                 text-align: center;
                 border-bottom: 2px solid rgb(232, 234, 236);
+                width: 450px;
             }
 
             .lm-tabs-ink {
@@ -72,7 +78,8 @@
                 border-top: 2px solid #854ec4;
                 -webkit-transition: left .24s ease-in-out;
                 transition: left .24s ease-in-out;
-                left: 193px;
+                left: 120px;
+                /*left: 250px;*/
                 width: 80px;
             }
         }
@@ -95,8 +102,8 @@
         </div>
         <div class="col-md-6 column">
             <div class="lm-tabs-nav">
-                <div class="lm-tabs-tab" data-key="0">登录</div>
-                <div class="lm-tabs-tab lm-tabs-tab-active" data-key="1">注册</div>
+                <div id="login" class="lm-tabs-tab lm-tabs-tab-active" data-key="0">登录</div>
+                <div id="register" class="lm-tabs-tab" data-key="1">注册</div>
                 <div class="lm-tabs-ink"></div>
             </div>
             <div id="myTabContent" class="form-signin tab-content">
@@ -123,7 +130,7 @@
                     <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2020</p>
                 </form>
                 <!--                注册页面-->
-                <form class="form-signin" id="regsterform" style="display: none">
+                <form class="form-signin" id="regsterform" style="display: none" action="user/register">
                     <div class="form-label-group">
                         <input type="text" id="useraccount" class="form-control" placeholder="Account" required
                                autofocus>
