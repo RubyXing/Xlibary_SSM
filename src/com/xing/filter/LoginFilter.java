@@ -17,8 +17,8 @@ public class LoginFilter implements Filter {
         System.out.println("=========================================");
         System.out.println("拦截到的请求为" + req.getRequestURI());
 
-
         if (req.getSession().getAttribute("name") == null || req.getSession().getAttribute("name") == "") {
+                resp.sendRedirect(req.getContextPath() + "/Login.html");
 
         } else {
             // session中的内容等于登录页面, 则可以继续访问其他区资源.
