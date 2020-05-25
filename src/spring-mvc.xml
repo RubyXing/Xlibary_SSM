@@ -24,7 +24,8 @@
     <!-- 静态资源放行：html、css、js、图片、视频 -->
     <mvc:default-servlet-handler/>
 
-<!--    配置数据校验器-->
+
+    <!--    配置数据校验器-->
     <bean id="balidator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
         <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
     </bean>

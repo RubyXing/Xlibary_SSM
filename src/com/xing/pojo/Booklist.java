@@ -13,8 +13,10 @@ public class Booklist {
   private long bid;
   //书名
   private String bname;
-  //作者
-  private String bauthor;
+    //  图片
+    private String bcover;
+    //作者
+    private String bauthor;
   //  价格
   private double bprice;
   //  出版时间

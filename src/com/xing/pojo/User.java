@@ -8,16 +8,16 @@ import org.hibernate.validator.constraints.NotBlank;
 @Accessors(chain = true)
 public class User {
 
-  private long uid;
-//  账号
-private String uaccount;
+    private long uid;
+    //  账号
+    private String uaccount;
+    //    头像
+    private String uheader;
     //  用户名
     private String uname;
     //  密码
     private String upwd;
     //  权限
     private long uauthorty;
-
-
 
 }

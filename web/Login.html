@@ -3,53 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="WEB-INF/css/bootstrap_3.3.7.css">
-    <link rel="stylesheet" href="WEB-INF/css/floating-labels.css">
-    <script src="WEB-INF/js/jquery_2.1.4.js"></script>
+    <link rel="stylesheet" href="css/bootstrap_3.3.7.css">
+    <link rel="stylesheet" href="css/floating-labels.css">
+    <script src="js/jquery_2.1.4.js"></script>
     <script>
-        $(document.ready(function () {
+        $(document).ready(function () {
+            //页面大小切换
+            function barOffset() {
+                var offsetbar = 0;
+                if ($(document.body).width() > 1200) {
+                    offsetbar = 60;
+                } else if ($(document.body).width() > 992) {
+                    offsetbar = 0;
+                } else {
+                    offsetbar = 130;
+                }
+                return offsetbar;
+            }
 
+            //登录注册切换
+            $("#login").click(function () {
+                $("#login").addClass("lm-tabs-tab-active");
+                $("#register").removeClass("lm-tabs-tab-active");
+                $("#regsterform").hide();
+                $("#loginform").show();
+                $("#lcolorbar").css("left", 120 + barOffset() + "px");
+            });
+            $("#register").click(function () {
+                $("#register").addClass("lm-tabs-tab-active");
+                $("#login").removeClass("lm-tabs-tab-active");
+                $("#loginform").hide();
+                $("#regsterform").show();
+                $("#lcolorbar").css("left", 250 + barOffset() + "px");
+            });
 
-        }))
+            $("#register_btn").click(function () {
+                if ($("#user_agree").prop("checked")) {
+                    $.ajax({
+                        url: "user/register",
+                        type: "post",
+                        data: $("#regsterform").serialize(),
+                        success: function (result) {
+                            console.info(result);
+                        }
+                    })
+                } else {
+                    alert("请阅读用户协议并勾选同意！")
+                    return false;
+                }
+
+            });
+
+            $("#login_btn").click(function () {
+                $.ajax({
+                    url: "user/login",
+                    type: "post",
+                    data: $("#loginform").serialize(),
+                    success: function (result) {
+                        // alert("问题");
+                    }
+                })
+            });
+        });
     </script>
+    <style>
+        .lm-tabs-tab {
+            display: inline-block;
+            padding: 14px 24px;
+            color: #666;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            -webkit-transition: color .24s;
+            transition: color .24s;
+        }
+
+        .lm-tabs-tab + .lm-tabs-tab {
+            margin-left: 48px;
+        }
+
+        .lm-tabs-tab-active, .lm-tabs-tab:hover {
+            color: #854ec4;
+        }
+
+        @media (max-width: 992px) {
+            .lm-tabs-nav {
+                position: relative;
+                text-align: center;
+                border-bottom: 2px solid rgb(232, 234, 236);
+                width: 700px;
+                margin-left: 40px;
+            }
+
+            .lm-tabs-ink {
+                position: absolute;
+                bottom: -2px;
+                border-top: 2px solid #854ec4;
+                -webkit-transition: left .24s ease-in-out;
+                transition: left .24s ease-in-out;
+                left: 246px;
+                /*left: 376px;*/
+                width: 80px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .lm-tabs-nav {
+                position: relative;
+                text-align: center;
+                border-bottom: 2px solid rgb(232, 234, 236);
+                width: 450px;
+            }
+
+            .lm-tabs-ink {
+                position: absolute;
+                bottom: -2px;
+                border-top: 2px solid #854ec4;
+                -webkit-transition: left .24s ease-in-out;
+                transition: left .24s ease-in-out;
+                left: 120px;
+                /*left: 250px;*/
+                width: 80px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .lm-tabs-nav {
+                position: relative;
+                text-align: center;
+                border-bottom: 2px solid rgb(232, 234, 236);
+                width: 580px;
+            }
+
+            .lm-tabs-ink {
+                position: absolute;
+                bottom: -2px;
+                border-top: 2px solid #854ec4;
+                -webkit-transition: left .24s ease-in-out;
+                transition: left .24s ease-in-out;
+                left: 180px;
+                /*left: 250px;*/
+                width: 80px;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="text-center mb-4">
-    <img class="mb-4" src="WEB-INF/imgs/library_icon.svg" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Xing Library</h1>
-    <p>Build form controls with floating labels via the <code>:placeholder-shown</code></p>
-</div>
-<div class="lm-tabs-nav" style="border-bottom: 2px solid rgb(232, 234, 236);">
-    <div id="login" class="lm-tabs-tab lm-tabs-tab-active" data-key="0">登录</div>
-    <div id="register" class="lm-tabs-tab " data-key="1">注册</div>
-</div>
-<form class="form-signin" action="user/login">
-    <div class="text-center mb-4">
-        <img class="mb-4" src="WEB-INF/imgs/library_icon.svg" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 font-weight-normal">Xing Library</h1>
-        <p>Build form controls with floating labels via the <code>:placeholder-shown</code></p>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-6 column">
+            <blockquote>
+                <p>
+                    如果一听到一种与你相左的意见就发怒，这表明，你已经下意识地感觉到你那种看法没有充分理由。如果某个人硬要说二加二等于五，你只会感到怜悯而不是愤怒。
+                </p> <small>Bertrand Arthur William Russell <cite>(罗素)</cite></small>
+            </blockquote>
+            <div class="text-center mb-4">
+                <img class="mb-4" src="imgs/library_icon.svg" width="72" height="72">
+                <h1 class="h3 mb-3 font-weight-normal">Xing Library</h1>
+                <p>Build form controls with floating labels </p>
+            </div>
+        </div>
+        <div class="col-md-6 column">
+            <div class="lm-tabs-nav">
+                <div id="login" class="lm-tabs-tab lm-tabs-tab-active" data-key="0">登录</div>
+                <div id="register" class="lm-tabs-tab" data-key="1">注册</div>
+                <div id="lcolorbar" class="lm-tabs-ink"></div>
+            </div>
+            <div id="myTabContent" class="form-signin tab-content">
+                <!--                登录页面-->
+                <form class="form-signin" action="user/login" id="loginform" method="post">
+                    <div class="form-label-group">
+                        <input type="text" id="inputAccount" class="form-control" placeholder="Account" required
+                               autofocus name="account">
+                        <label for="inputAccount">账号：</label>
+                    </div>
+
+                    <div class="form-label-group">
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required
+                               name="pwd">
+                        <label for="inputPassword">密码：</label>
+                    </div>
+
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" value="remember-me"> Remember me
+                        </label>
+                    </div>
+                    <button id="login_btn" class="btn btn-lg btn-primary btn-block" type="submit">登 录</button>
+
+                    <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2020</p>
+                </form>
+                <!--                注册页面-->
+                <form class="form-signin" id="regsterform" style="display: none" action="user/register" method="post">
+                    <div class="form-label-group">
+                        <input type="text" id="regaccount" class="form-control" placeholder="Account" required
+                               autofocus name="uaccount">
+                        <label for="regaccount">账号：</label>
+                    </div>
+                    <div class="form-label-group">
+                        <input type="text" id="reguname" class="form-control" placeholder="Account" required
+                               autofocus name="uname">
+                        <label for="reguname">用户名：</label>
+                    </div>
+                    <div class="form-label-group">
+                        <input type="password" id="regpwd" class="form-control" placeholder="Account" required
+                               autofocus name="upwd">
+                        <label for="regpwd">密码：</label>
+                    </div>
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input id="user_agree" type="checkbox" value="remember-me"> 我已阅读并同意<a
+                                href="https://www.w3cschool.cn/webagreement" target="_blank">《用户注册协议》</a>
+                        </label>
+                    </div>
+                    <button id="register_btn" class="btn btn-lg btn-primary btn-block" type="submit">注 册</button>
+
+                    <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2020</p>
+                </form>
+
+            </div>
+        </div>
     </div>
-
-    <div class="form-label-group">
-        <input type="text" id="inputAccount" class="form-control" placeholder="Account" required autofocus>
-        <label for="inputAccount">账号：</label>
-    </div>
-
-    <div class="form-label-group">
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <label for="inputPassword">密码：</label>
-    </div>
-
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="remember-me"> Remember me
-        </label>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-
-    <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2020</p>
-</form>
-
-<script src="WEB-INF/js/bootstrap_3.3.7_js.js"></script>
+    <script src="js/bootstrap_3.3.7_js.js"></script>
 </body>
 </html>
