@@ -34,7 +34,7 @@ public class UserController {
                 HttpSession session = req.getSession();
                 session.setAttribute("name", user.getUname());
                 session.setAttribute("authority", user.getUauthorty());
-                return "redirect:/book/listBooks?currentPage=1";
+                return "/book/listBooks/1";
             }
         }
         return "Login.html";

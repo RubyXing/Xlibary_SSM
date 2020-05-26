@@ -9,10 +9,29 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%
+    String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
+%>
 <html>
+<base href="<%=baseUrl%>">
+<meta charset="utf-8">
 <head>
     <title>图书列表页</title>
-    <link rel="stylesheet" type="text/css" href="css/styles_stars.css">
+    <link rel="stylesheet" href="staticStyle/css/bootstrap_3.3.7.css">
+    <link rel="stylesheet" type="text/css" href="staticStyle/css/styles_stars.css">
+    <script src="staticStyle/js/jquery_2.1.4.js"></script>
+    <script>
+        $(document).ready(function () {
+            //搜索展开按钮
+            $("#featured-campaign-search").click(function () {
+                $("#menu-search-overlay").addClass("active");
+            })
+
+            $("#menu-search-close").click(function () {
+                $("#menu-search-overlay").removeClass("active");
+            })
+        })
+    </script>
 </head>
 <body>
 <div id="app-view-wrapper">
@@ -48,7 +67,32 @@
             margin: 0;
             color: #ffffff;
         }
+
+        #menu-search-input {
+            background: none;
+            border: 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+            -ms-border-bottom: 1px solid #edebe9;
+            border-radius: 0;
+            box-sizing: border-box;
+            display: block;
+            padding: 4px 0;
+            transition-property: border;
+            transition-duration: 0.2s;
+            position: relative;
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: 700;
+            line-height: inherit;
+            width: 100%;
+            z-index: 500;
+        }
     </style>
+    <c:forEach items="${requestScope.get('books')}" var="book">
+        ${book.bid}
+        ${book.bname}
+        ${book.bcover}
+    </c:forEach>
 
     <!-- Page content -->
     <section id="content">
@@ -218,7 +262,6 @@
             </div>
 
         </section>
-
         <section class="lto-items wrapper" id="lto-items">
             <h2>所有新品</h2>
             <div class="grid columns-3 padded-2">
@@ -406,7 +449,6 @@
 
             </div>
         </section>
-
         <script type="text/javascript">
             var collapsibles = document.querySelectorAll('.featured-collapsible');
             for (var i = 0; i < collapsibles.length; i++) {
@@ -501,10 +543,9 @@
                 }
             }
         </script>
-
         <div class="overlay" id="menu-search-overlay">
             <header class="header">
-                <button class="icon close">Close</button>
+                <button id="menu-search-close" class="icon close">关闭</button>
             </header>
             <div class="body">
                 <div class="field search">
@@ -513,24 +554,27 @@
                     <input type="text" id="menu-search-input" placeholder="搜索菜单">
                 </div>
                 <div id="menu-search-empty">
-                    <div class="tag">大家都在搜</div>
+                    <div class="tag"
+                         style="display: inline-block;padding: 2px 12px;background: #00A862;font-size: 14px;color: #FFF;">
+                        大家都在搜
+                    </div>
                 </div>
                 <ul class="grid columns-4 padded-2" id="menu-search-results">
-                    <li><a class="overlay-close thumbnail" href="/menu/food/cake-dessert/blueberry-cheesecake/">
+                    <li><a class="overlay-close thumbnail" href="">
                         <div class="preview circle"
-                             style="background-image: url(/images/products/blueberry-and-cookie-style-cheesecake.jpg)"></div>
+                             style="background-image: url(staticStyle/imgs/1.jpg)"></div>
                         <strong>蓝莓曲奇风轻乳酪蛋糕</strong> </a></li>
-                    <li><a class="overlay-close thumbnail" href="/menu/beverages/espresso/caramel-macchiato/">
+                    <li><a class="overlay-close thumbnail" href="">
                         <div class="preview circle"
-                             style="background-image: url(/images/products/caramel-macchiato.jpg)"></div>
+                             style="background-image: url(staticStyle/imgs/2.jpg)"></div>
                         <strong>焦糖玛奇朵（热/冷）</strong> </a></li>
-                    <li><a class="overlay-close thumbnail"
-                           href="/menu/coffee/whole-bean/medium-roast/starbucks-house-blend/">
+                    <li><a class="overlay-close thumbnail" href="">
                         <div class="preview circle"
-                             style="background-image: url(/images/house-blend-coffee-beans.png)"></div>
+                             style="background-image: url(staticStyle/imgs/3.jpg)"></div>
                         <strong>星巴克®首选咖啡豆</strong> </a></li>
-                    <li><a class="overlay-close thumbnail" href="/menu/coffee/whole-bean/medium-roast/starbucks-kenya/">
-                        <div class="preview circle" style="background-image: url(/images/kenya-coffee-beans.png)"></div>
+                    <li><a class="overlay-close thumbnail" href="">
+                        <div class="preview circle"
+                             style="background-image: url(staticStyle/imgs/4.jpg)"></div>
                         <strong>星巴克®肯亚咖啡豆</strong> </a></li>
                 </ul>
             </div>
@@ -538,27 +582,18 @@
         <div class="frap">
             <button id="featured-campaign-search" class="button primary trigger" rel="menu-search-overlay">搜索菜单</button>
         </div>
-
-
         <div id="app-notification">
             <div data-reactroot=""></div>
         </div>
     </section>
-    <!-- banner-video begin -->
-    <!-- <div class="banner-video" id="banner-video">
-      <div class="close-video" id="close-video"><img src="../assets/icons/close-video.png" alt=""></div>
-      <div class="iframe-video" id="iframe-video"></div>
-    </div>
-    <div id="video_container"></div>
-    <script type="text/javascript" src="//vm.gtimg.cn/tencentvideo/txp/js/iframe/api.js"></script> -->
-    <!-- banner-video end -->
+
 
     <div id="app-loading">
         <div data-reactroot="" class="loading"></div>
     </div>
     <div id="app-auth"><span data-reactroot=""></span></div>
-
-
 </div>
+
+<script src="staticStyle/js/bootstrap_3.3.7_js.js"></script>
 </body>
 </html>

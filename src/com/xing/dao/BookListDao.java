@@ -5,6 +5,7 @@ package com.xing.dao;/*
 
 import com.xing.pojo.Booklist;
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -27,4 +28,7 @@ public interface BookListDao {
 
     @Delete("delete booklist where bid = #{bid};")
     int deleteBook(int bid);
+
+    @Insert("")
+    int insertBook(Booklist book);
 }
