@@ -1,23 +1,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <header class="header">
     <a class="logo" href="/Xlibrary/">
-        <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/logo.svg" alt="星巴克">
+        <img src="staticStyle/imgs/library_icon.svg" alt="图书馆">
     </a>
     <div class="primary">
         <ul>
-            <li class="stores">
-                <a id="stores-primary" href="/stores/">
-                    门店
-                </a>
-            </li>
             <li class="account">
-                <a id="account-primary" href="/account/"><span data-reactroot="" class="">我的帐户</span></a>
+                <a id="account-primary" href="/account/"><span data-reactroot="" class="">我的借阅</span></a>
             </li>
             <li class="menu">
-                <a id="menu-primary" href="/menu/" class="active">
-                    菜单
+                <a id="menu-primary" href="/user/detail/${sessionScope.uname}" class="active">
+                    个人
                 </a>
+            </li>
+            <li class="stores">
+                <img src="staticStyle/imgs/member${sessionScope.authority}.svg" width="20px" height="20px"
+                     style="margin-top: 6px;">
             </li>
         </ul>
     </div>

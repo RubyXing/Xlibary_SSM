@@ -52,5 +52,14 @@ public class UserController {
 
 //    信息修改模块
 
+//    信息展示
+@RequestMapping("/details")
+public ModelAndView userDetails(int uid) {
+    User user = userDao.findUser(uid);
+    ModelAndView view = new ModelAndView("/BookList.jsp");
+    view.addObject("user", user);
+
+    return view;
+}
 
 }

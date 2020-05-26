@@ -18,4 +18,7 @@ public interface UserDao {
 
     @Update("update user set uaccount = #{uaccount},uname = #{uname},upwd = #{upwd},uauthorty = #{uauthorty} where uid = #{uid}")
     int userChange(User user);
+
+    @Select("select * from user where uid = #{uid};")
+    User findUser(int uid);
 }
