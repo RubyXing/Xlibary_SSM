@@ -1,47 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" href="css/styles_stars.css">
-<nav id="nav">
 
+<nav id="nav">
     <div id="placeholder-element"></div>
     <div class="container">
-        <header class="header">
-            <a class="logo" href="/">
-                <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/logo.svg" alt="星巴克">
-            </a>
-            <div class="primary">
-                <ul>
-
-                    <li class="stores">
-                        <a id="stores-primary" href="/stores/">
-                            门店
-                        </a>
-                    </li>
-
-                    <li class="account">
-                        <a id="account-primary" href="/account/"><span data-reactroot="" class="">我的帐户</span></a>
-                    </li>
-
-                    <li class="menu">
-                        <a id="menu-primary" href="/menu/" class="active">
-                            菜单
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-
-            <a class="icon trigger" rel="nav-overlay" id="nav-menu">
-                <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/icons/icon-hamburger.svg">
-                <span>更多</span>
-            </a>
-
-        </header>
+        <jsp:include page="Userheader.jsp"/>
 
         <div class="body">
             <nav class="container middle secondary">
-
-
-                <div class="display-1">菜单</div>
                 <div class="tabs-wrapper">
                     <ul class="subcategories">
 
