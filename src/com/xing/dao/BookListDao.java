@@ -29,6 +29,6 @@ public interface BookListDao {
     @Delete("delete booklist where bid = #{bid};")
     int deleteBook(int bid);
 
-    @Insert("")
+    @Insert("insert into booklist values(default,)")
     int insertBook(Booklist book);
 }

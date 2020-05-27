@@ -30,13 +30,58 @@
             $("#menu-search-close").click(function () {
                 $("#menu-search-overlay").removeClass("active");
             })
+
+            $("[id=borrow]").click(function () {
+                var message = $(this).attr("value");
+                var num = $("#bookstock" + $(this).attr("value") + "").text() - 1;
+
+                alert(num);
+                $("[id=bookstock" + $(this).attr("value") + "]").text(num);
+            })
         })
     </script>
+    <style>
+        @media (min-width: 1024px) {
+            #myCarousel {
+                margin-left: 30%;
+            }
+        }
+    </style>
 </head>
 <body>
+<jsp:include page="Sidebar.jsp"/>
+<div id="myCarousel" class="carousel slide">
+    <!-- 轮播（Carousel）指标 -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <!-- 轮播（Carousel）项目 -->
+    <div class="carousel-inner" style="height: 300px">
+        <div class="item active">
+            <img src="staticStyle/imgs/rwby1.jpg" alt="First slide">
+        </div>
+        <div class="item">
+            <img src="staticStyle/imgs/rwby2.jpg" alt="Second slide">
+        </div>
+        <div class="item">
+            <img src="staticStyle/imgs/rwby3.jpg" alt="Third slide">
+        </div>
+    </div>
+    <!-- 轮播（Carousel）导航 -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
 <div id="app-view-wrapper">
     <!-- Navigation panel -->
-    <jsp:include page="Sidebar.jsp"/>
     <style>
         @media (min-width: 1025px) {
             #terms-notes {
@@ -48,6 +93,7 @@
                 display: none;
             }
         }
+
         .terms-notes {
             position: fixed;
             display: none;
@@ -88,360 +134,75 @@
             z-index: 500;
         }
     </style>
-    <c:forEach items="${requestScope.get('books')}" var="book">
-        ${book.bid}
-        ${book.bname}
-        ${book.bcover}
-    </c:forEach>
+
 
     <!-- Page content -->
     <section id="content">
-        <section class="hero relative">
-
-            <div class="block relative mobile-hidden">
-                <a href="#lto-items">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/kv.jpg"
-                         class="img">
-                </a>
-            </div>
-            <div class="block relative show-mobile tablet-hidden">
-                <a href="#lto-items">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/kv-mobile.jpg"
-                         class="img">
-                </a>
-            </div>
-
-            <div class="wrapper">
-                <h2>“甜品”派对 夏天由你</h2>
-                <p class="text description" style="padding:0 20px">
-                    全新夏季限定星冰乐，带来属于夏天的那份自由放肆。<br> 经典“甜品”的全新演绎，佐以丰盛食材，带给你大快朵颐的味蕾体验。<br> 可盐可甜的草莓轻乳酪星冰乐，牛乳轻芝士与饱满香甜的草莓果肉奇妙碰撞。<br>
-                    提拉米苏风味星冰乐创新演绎意式经典甜品，美味层层递进，浓香口口沁心。<br> 杨枝甘露星冰乐，芒果浓郁 ，粒粒饱满的白柚果粒更增添丰富口感。
-                </p>
-            </div>
-        </section>
-        <section class="featured-items">
-            <div class="item">
-                <div class="mobile-hidden">
-                    <a href="#lto-items" class="block relative">
-                        <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/merch.jpg"
-                             class="img">
-                    </a>
-                    <div class="description text wrapper">
-                        <h2>非洲的咖啡奇幻故事</h2>
-                        <p>作为重要的咖啡产区之一，非洲大陆充满了传奇和神秘。<br> 这个夏天和星巴克全新夏日星杯一起，<br> 探寻非洲的咖啡奇幻故事。</p>
-                    </div>
-                </div>
-                <div class="show-mobile tablet-hidden">
-                    <a href="#lto-items" class="block relative">
-                        <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/merch-mobile.jpg"
-                             class="img">
-                    </a>
-                    <div class="description text wrapper collapsed">
-                        <h2>非洲的咖啡奇幻故事</h2>
-                        <div class="body">
-                            <p>作为重要的咖啡产区之一，非洲大陆充满了传奇和神秘。<br> 这个夏天和星巴克全新夏日星杯一起，<br> 探寻非洲的咖啡奇幻故事。</p>
-                        </div>
-                        <span class="icon"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="mobile-hidden">
-                    <a href="#lto-items" class="block relative">
-                        <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/cloud-coffee.jpg"
-                             class="img">
-                    </a>
-                    <div class="description text wrapper">
-                        <h2>大溪地风情绵云冷萃</h2>
-                        <p>大溪地香草风味调和脱脂奶制成轻盈奶沫。<br> 每一口，云朵般的绵柔质地包裹着14小时慢速萃取的冷萃冰咖啡，<br> 轻柔地滑过舌尖，绵密而细腻。<br></p>
-                    </div>
-                </div>
-                <div class="show-mobile tablet-hidden">
-                    <a href="#lto-items" class="block relative">
-                        <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/cloud-coffee-mobile.jpg"
-                             class="img">
-                    </a>
-                    <div class="description text wrapper collapsed">
-                        <h2>大溪地风情绵云冷萃</h2>
-                        <div class="body">
-                            <p>大溪地香草风味调和脱脂奶制成轻盈奶沫。<br> 每一口，云朵般的绵柔质地包裹着14小时慢速萃取的冷萃冰咖啡，<br> 轻柔地滑过舌尖，绵密而细腻。<br></p>
-                        </div>
-                        <span class="icon"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="mobile-hidden">
-                    <a href="#lto-items" class="block relative">
-                        <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/coffee.jpg"
-                             class="img">
-                    </a>
-                    <div class="description text wrapper">
-                        <h2>卡提卡提综合咖啡豆</h2>
-                        <p>其中肯亚咖啡豆带来前段醇度和独特的柑橘风味，<br> 而埃塞俄比亚咖啡豆让这款咖啡变得柔和，<br> 增加了风味复杂性和香气的层次，<br> 咖啡的烘焙程度，使酸度，醇度和风味达到平衡。<br>
-                            风味融合了柑橘、花香以及香料味。<br> 精致的酸质与烘焙所带来的甘甜<br> 为这一炎热的夏天带来沁爽的夏日冰饮体验</p>
-                    </div>
-                </div>
-                <div class="show-mobile tablet-hidden">
-                    <a href="#lto-items" class="block relative">
-                        <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/coffee-mobile.jpg"
-                             class="img">
-                    </a>
-                    <div class="description text wrapper collapsed">
-                        <h2>卡提卡提综合咖啡豆</h2>
-                        <div class="body">
-                            <p>其中肯亚咖啡豆带来前段醇度和独特的柑橘风味，<br> 而埃塞俄比亚咖啡豆让这款咖啡变得柔和，<br> 增加了风味复杂性和香气的层次，<br>
-                                咖啡的烘焙程度，使酸度，醇度和风味达到平衡。<br> 风味融合了柑橘、花香以及香料味。<br> 精致的酸质与烘焙所带来的甘甜<br> 为这一炎热的夏天带来沁爽的夏日冰饮体验
-                            </p>
-                        </div>
-                        <span class="icon"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="mobile-hidden">
-                    <a href="#lto-items" class="block relative">
-                        <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/food.jpg"
-                             class="img">
-                    </a>
-                    <div class="description text wrapper">
-                        <h2>咖啡好食光</h2>
-                        <p>可爱小蜜蜂造型，搭配橙花风味内馅，<br> 配上巧克力味淋酱，香味清新，口感绵密，<br> 再配以大麦苗及抹茶的蛋糕胚，清新淡雅。<br> 和小蜜蜂一起，开启夏日体验。</p>
-                    </div>
-                </div>
-                <div class="show-mobile tablet-hidden">
-                    <a href="#lto-items" class="block relative">
-                        <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/food-moblie.jpg"
-                             class="img">
-                    </a>
-                    <div class="description text wrapper collapsed">
-                        <h2>咖啡好食光</h2>
-                        <div class="body">
-                            <p>可爱小蜜蜂造型，搭配橙花风味内馅，<br> 配上巧克力味淋酱，香味清新，口感绵密，<br> 再配以大麦苗及抹茶的蛋糕胚，清新淡雅。<br> 和小蜜蜂一起，开启夏日体验。</p>
-                        </div>
-                        <span class="icon"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="mobile-hidden">
-                    <a href="#lto-items" class="block relative">
-                        <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/beans.jpeg"
-                             class="img">
-                    </a>
-                    <div class="description text wrapper">
-                        <h2>夏日乐悠悠 不负这杯好咖啡</h2>
-                        <p>日晒埃塞俄比亚耶加雪菲雪冽图咖啡豆<br> 拥有花朵与热带水果般的香气，伴随着红莓般的酸甜。<br> 肯尼亚芭拉吉山咖啡豆黑加仑般的酸甜，<br>
-                            花朵般的香气，糖浆般的尾韵让人印象深刻。<br> 卢旺达穆洪多咖啡豆具有可可粉和红糖般的风味，<br> 伴有麦芽般的底韵，口感平衡。<br> 巴西加利福尼亚庄园的咖啡豆，<br>
-                            香浓的牛奶巧克力般的风味，伴有烤榛子般的口感。</p>
-                    </div>
-                </div>
-                <div class="show-mobile tablet-hidden">
-                    <a href="#lto-items" class="block relative">
-                        <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/beans-mobile.jpeg"
-                             class="img">
-                    </a>
-                    <div class="description text wrapper collapsed">
-                        <h2>夏日乐悠悠 不负这杯好咖啡</h2>
-                        <div class="body">
-                            <p>日晒埃塞俄比亚耶加雪菲雪冽图咖啡豆<br> 拥有花朵与热带水果般的香气，伴随着红莓般的酸甜。<br> 肯尼亚芭拉吉山咖啡豆黑加仑般的酸甜，<br>
-                                花朵般的香气，糖浆般的尾韵让人印象深刻。<br> 卢旺达穆洪多咖啡豆具有可可粉和红糖般的风味，<br> 伴有麦芽般的底韵，口感平衡。<br>
-                                巴西加利福尼亚庄园的咖啡豆，<br> 香浓的牛奶巧克力般的风味，伴有烤榛子般的口感。</p>
-                        </div>
-                        <span class="icon"></span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="lto-items wrapper" id="lto-items">
-            <h2>所有新品</h2>
-            <div class="grid columns-3 padded-2">
-
-
-                <div class="item" style="height: 305px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/1.jpg">
-                    <p>草莓轻乳酪星冰乐</p>
-                </div>
-
-
-                <div class="item" style="height: 305px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/2.jpg">
-                    <p>提拉米苏风味星冰乐</p>
-                </div>
-
-
-                <div class="item" style="height: 305px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/3.jpg">
-                    <p>杨枝甘露星冰乐</p>
-                </div>
-
-
-                <div class="item" style="height: 330px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/4.jpg">
-                    <p>大溪地风情绵云冷萃</p>
-                </div>
-
-
-                <div class="item" style="height: 330px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/5.jpg">
-                    <p>星巴克®卡提卡提综合咖啡豆</p>
-                </div>
-
-
-                <div class="item" style="height: 330px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/6.jpg">
-                    <p>星巴克臻选™日晒埃塞俄比亚 耶加雪菲雪冽图咖啡豆</p>
-                </div>
-
-
-                <div class="item" style="height: 330px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/7.jpg">
-                    <p>星巴克臻选™巴西 加利福尼亚庄园咖啡豆</p>
-                </div>
-
-
-                <div class="item" style="height: 330px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/8.jpg">
-                    <p>星巴克臻选™肯尼亚 芭拉吉山咖啡豆</p>
-                </div>
-
-
-                <div class="item" style="height: 330px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/9.jpg">
-                    <p>星巴克臻选™卢旺达 穆洪多咖啡豆</p>
-                </div>
-
-
-                <div class="item" style="height: 305px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/10.jpg">
-                    <p>绿色大使会员星礼包</p>
-                </div>
-
-
-                <div class="item" style="height: 305px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/11.jpg">
-                    <p>绿色大使会员星礼包</p>
-                </div>
-
-
-                <div class="item" style="height: 305px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/12.jpg">
-                    <p>300ml跷跷板款马克杯组</p>
-                </div>
-
-
-                <div class="item" style="height: 330px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/13.PNG">
-                    <p>200ml虎牌小熊款保温杯</p>
-                </div>
-
-
-                <div class="item" style="height: 330px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/14.PNG">
-                    <p>414ml咖啡动物款玻璃杯套装</p>
-                </div>
-
-
-                <div class="item" style="height: 330px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/15.jpg">
-                    <p>591ml欢乐非洲动物款塑料吸管杯</p>
-                </div>
-
-
-                <div class="item" style="height: 330px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/16.png">
-                    <p>100ml丛林动物款马克杯</p>
-                </div>
-
-
-                <div class="item" style="height: 330px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/17.PNG">
-                    <p>414ml豹纹小熊款玻璃杯套装</p>
-                </div>
-
-
-                <div class="item" style="height: 330px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/18.PNG">
-                    <p>500mlContigo河马小熊款吸管杯</p>
-                </div>
-
-
-                <div class="item" style="height: 305px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/19.PNG">
-                    <p>384ml豹纹小熊款马克杯</p>
-                </div>
-
-
-                <div class="item" style="height: 305px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/20.PNG">
-                    <p>444ml斑马小熊款水瓶套装</p>
-                </div>
-
-
-                <div class="item" style="height: 305px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/21.PNG">
-                    <p>384ml豹脚款玻璃杯</p>
-                </div>
-
-
-                <div class="item" style="height: 305px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/22.jpg">
-                    <p>350ml膳魔师豹纹款保温杯</p>
-                </div>
-
-
-                <div class="item" style="height: 305px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/23.PNG">
-                    <p>473ml粉色豹纹款保温瓶</p>
-                </div>
-
-
-                <div class="item" style="height: 305px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/24.PNG">
-                    <p>450ml Contigo豹纹款吸管杯</p>
-                </div>
-
-
-                <div class="item" style="height: 305px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/25.png">
-                    <p>473ml粉色豹纹款吸管杯</p>
-                </div>
-
-
-                <div class="item" style="height: 305px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/26.png">
-                    <p>340ml粉色豹纹款马克杯</p>
-                </div>
-
-
-                <div class="item" style="height: 305px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/27.jpg">
-                    <p>210ml长颈鹿和小熊款保温杯</p>
-                </div>
-
-
-                <div class="item" style="height: 330px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/28.jpg">
-                    <p>220ml迷你长颈鹿款不锈钢胶囊杯</p>
-                </div>
-
-
-                <div class="item" style="height: 330px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/29.jpg">
-                    <p>370ml膳魔师可爱长颈鹿款吸管杯</p>
-                </div>
-
-
-                <div class="item" style="height: 330px;">
-                    <img src="https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/2020summer/small-pics/30.jpg">
-                    <p>初绽蛋糕（橙花味）</p>
-                </div>
-
-
-            </div>
-        </section>
-
-<%--        搜索菜单 --%>
+        <div class="wrapper fluid margin page-menu-list">
+            <h3 class="caption">今日上新</h3>
+            <ul class="grid padded-3 product">
+                <c:forEach items="${requestScope.get('books')}" var="book" begin="0" end="2">
+                    <li>
+                        <a id="menu-product-related-affogato" href="/book/showBook/${book.bid}"
+                           class="thumbnail">
+                            <div class="preview circle"
+                                 style="background-image: url(${book.bcover})"></div>
+                            <strong>${book.bname}</strong>
+                        </a>
+                        作者：${book.bauthor}
+                        <p>${book.bdescription}</p>
+                        <button id="borrow" value="${book.bid}">借阅</button>
+                        <text style="float: right;">库存:<b id="bookstock${book.bid}">${book.bkeepnum-book.boutnum}</b>
+                        </text>
+                    </li>
+                </c:forEach>
+            </ul>
+
+            <hr>
+
+            <h3 class="caption">推荐阅读</h3>
+            <ul class="grid padded-3 product">
+                <c:forEach items="${requestScope.get('books')}" var="book" begin="3" end="6">
+                    <li>
+                        <a id="menu-product-related-affogato" href="/book/showBook/${book.bid}"
+                           class="thumbnail">
+                            <div class="preview circle"
+                                 style="background-image: url(${book.bcover})"></div>
+                            <strong>${book.bname}</strong>
+                        </a>
+                        作者：${book.bauthor}
+                        <p>${book.bdescription}</p>
+                        <button id="borrow" value="${book.bid}">借阅</button>
+                        <text style="float: right;">库存:<b id="bookstock${book.bid}">${book.bkeepnum-book.boutnum}</b>
+                        </text>
+                    </li>
+                </c:forEach>
+            </ul>
+
+            <hr>
+
+            <h3 class="caption">全部馆藏</h3>
+            <ul class="grid padded-3 product">
+                <c:forEach items="${requestScope.get('books')}" var="book">
+                    <li>
+                        <a id="menu-product-related-affogato" href="/book/showBook/${book.bid}"
+                           class="thumbnail">
+                            <div class="preview circle"
+                                 style="background-image: url(${book.bcover})"></div>
+                            <strong>${book.bname}</strong>
+                        </a>
+                        作者：${book.bauthor}
+                        <p>${book.bdescription}</p>
+                        <button id="borrow" value="${book.bid}">借阅</button>
+                        <text style="float: right;">库存:<b id="bookstock${book.bid}">${book.bkeepnum-book.boutnum}</b>
+                        </text>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
+
+
+        <%--        搜索菜单 --%>
         <div class="overlay" id="menu-search-overlay">
             <header class="header">
                 <button id="menu-search-close" class="icon close">关闭</button>
@@ -462,19 +223,19 @@
                     <li><a class="overlay-close thumbnail" href="">
                         <div class="preview circle"
                              style="background-image: url(staticStyle/imgs/1.jpg)"></div>
-                        <strong>蓝莓曲奇风轻乳酪蛋糕</strong> </a></li>
+                        <strong>黑天鹅</strong> </a></li>
                     <li><a class="overlay-close thumbnail" href="">
                         <div class="preview circle"
                              style="background-image: url(staticStyle/imgs/2.jpg)"></div>
-                        <strong>焦糖玛奇朵（热/冷）</strong> </a></li>
+                        <strong>人类简史</strong> </a></li>
                     <li><a class="overlay-close thumbnail" href="">
                         <div class="preview circle"
                              style="background-image: url(staticStyle/imgs/3.jpg)"></div>
-                        <strong>星巴克®首选咖啡豆</strong> </a></li>
+                        <strong>三体</strong> </a></li>
                     <li><a class="overlay-close thumbnail" href="">
                         <div class="preview circle"
                              style="background-image: url(staticStyle/imgs/4.jpg)"></div>
-                        <strong>星巴克®肯亚咖啡豆</strong> </a></li>
+                        <strong>杀死一只知更鸟</strong> </a></li>
                 </ul>
             </div>
         </div>

@@ -54,16 +54,17 @@
 
             });
 
-            $("#login_btn").click(function () {
+            $("#loginform").submit(function () {
                 $.ajax({
                     url: "user/login",
-                    type: "post",
+                    type: "POST",
                     data: $("#loginform").serialize(),
                     success: function (result) {
                         // alert("问题");
                         console.info(result.state);
                     }
                 })
+
             });
         });
     </script>
@@ -159,7 +160,7 @@
                 </p> <small>Bertrand Arthur William Russell <cite>(罗素)</cite></small>
             </blockquote>
             <div class="text-center mb-4">
-                <img class="mb-4" src="imgs/library_icon.svg" width="72" height="72">
+                <img class="mb-4" src="staticStyle/imgs/library_icon.svg" width="72" height="72">
                 <h1 class="h3 mb-3 font-weight-normal">Xing Library</h1>
                 <p>Build form controls with floating labels </p>
             </div>
@@ -172,7 +173,7 @@
             </div>
             <div id="myTabContent" class="form-signin tab-content">
                 <!--                登录页面-->
-                <form class="form-signin" action="user/login" id="loginform" method="post">
+                <form class="form-signin" id="loginform" method="post" action="user/login">
                     <div class="form-label-group">
                         <input type="text" id="inputAccount" class="form-control" placeholder="Account" required
                                autofocus name="account">
@@ -195,7 +196,7 @@
                     <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2020</p>
                 </form>
                 <!--                注册页面-->
-                <form class="form-signin" id="regsterform" style="display: none" action="user/register" method="post">
+                <form class="form-signin" id="regsterform" style="display: none">
                     <div class="form-label-group">
                         <input type="text" id="regaccount" class="form-control" placeholder="Account" required
                                autofocus name="uaccount">

@@ -10,11 +10,11 @@
     <div class="primary">
         <ul>
             <li class="account">
-                <a id="account-primary" href="/account/"><span data-reactroot="" class="">我的借阅</span></a>
+                <a id="account-primary" href=""><span data-reactroot="" class="">我的借阅</span></a>
             </li>
             <li class="menu">
-                <a id="menu-primary" href="/user/detail/${sessionScope.uname}" class="active">
-                    个人
+                <a id="menu-primary" href="/user/detail/${sessionScope.id}" class="active">
+                    ${sessionScope.name}
                 </a>
             </li>
             <li class="stores">
